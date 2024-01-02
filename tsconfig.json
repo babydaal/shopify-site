@@ -16,6 +16,12 @@
     "incremental": true,
     "baseUrl": ".",
     "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@app/*": ["app/*"],
+      "@components/*": ["components/*"],
+      "@lib/*": ["lib/*"],
+      "@public/*": ["public/*"]
+    },
     "plugins": [
       {
         "name": "next"

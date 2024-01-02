@@ -10,14 +10,14 @@ import { useFormState, useFormStatus } from 'react-dom';
 
 function SubmitButton({
   availableForSale,
-  selectedVariantId
+  selectedVariantId,
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
 }) {
   const { pending } = useFormStatus();
   const buttonClasses =
-    'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
+    'relative flex w-full items-center justify-center rounded-full bg-secondary p-4 tracking-wide text-base lowercase hover:bg-secondary-dark focus:border focus:border-secondary-darker';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
 
   if (!availableForSale) {
@@ -52,7 +52,7 @@ function SubmitButton({
       aria-disabled={pending}
       className={clsx(buttonClasses, {
         'hover:opacity-90': true,
-        disabledClasses: pending
+        disabledClasses: pending,
       })}
     >
       <div className="absolute left-0 ml-4">
@@ -65,7 +65,7 @@ function SubmitButton({
 
 export function AddToCart({
   variants,
-  availableForSale
+  availableForSale,
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
@@ -75,8 +75,8 @@ export function AddToCart({
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every(
-      (option) => option.value === searchParams.get(option.name.toLowerCase())
-    )
+      (option) => option.value === searchParams.get(option.name.toLowerCase()),
+    ),
   );
   const selectedVariantId = variant?.id || defaultVariantId;
   const actionWithVariant = formAction.bind(null, selectedVariantId);

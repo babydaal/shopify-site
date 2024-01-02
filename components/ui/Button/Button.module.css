@@ -1,0 +1,81 @@
+.root {
+  @apply inline-flex cursor-pointer items-center justify-center
+  rounded-full
+  border border-transparent bg-primary px-10 py-2 text-center
+  text-sm font-semibold lowercase leading-6
+  tracking-wide text-white shadow-sm transition duration-150
+  ease-in-out;
+  max-height: 64px;
+}
+
+.root:hover {
+  @apply border-accent-5 bg-accent-5;
+}
+
+.root:focus {
+  @apply shadow-outline-normal outline-none;
+}
+
+.root[data-active] {
+  @apply bg-accent-6;
+}
+
+.loading {
+  @apply cursor-not-allowed border-accent-2 bg-accent-1 text-accent-3;
+}
+
+.slim {
+  @apply transform-none bg-secondary py-2 text-base font-semibold lowercase;
+}
+
+.slim:hover,
+.slim:active {
+  @apply border-accent-7 bg-accent-7;
+}
+
+.slim:focus {
+  @apply border-accent-4;
+}
+
+.ghost {
+  @apply border border-accent-2 bg-accent-0 text-sm text-accent-9;
+}
+
+.ghost:hover {
+  @apply border-accent-9 bg-accent-9 text-accent-0;
+}
+
+.violet {
+  @apply border-primary bg-primary-light px-4 py-1 text-primary-dark;
+}
+
+.violet:hover,
+.violet:focus {
+  @apply border-primary-dark bg-primary-dark text-white shadow-primary;
+}
+
+.violet:active,
+.violet[data-active] {
+  @apply bg-primary-light text-primary-dark;
+}
+
+.naked {
+  @apply border-none bg-transparent px-0 py-0 font-semibold shadow-none outline-none;
+}
+
+.naked:hover,
+.naked:focus {
+  @apply border-none bg-transparent;
+}
+
+.disabled,
+.disabled:hover {
+  @apply cursor-not-allowed border-accent-2 bg-accent-1 text-accent-4;
+  filter: grayscale(1);
+  -webkit-transform: translateZ(0);
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
+}
+
+.progress {
+}

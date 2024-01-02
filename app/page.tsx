@@ -1,4 +1,4 @@
-import { Carousel } from 'components/carousel';
+import { HeroBanner } from 'components/HeroBanner';
 import { ThreeItemGrid } from 'components/grid/three-items';
 import Footer from 'components/layout/footer';
 import { Suspense } from 'react';
@@ -6,10 +6,10 @@ import { Suspense } from 'react';
 export const runtime = 'edge';
 
 export const metadata = {
-  description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
+  description: 'babydaal | Indian Inspired Granola',
   openGraph: {
-    type: 'website'
-  }
+    type: 'website',
+  },
 };
 
 export default async function HomePage() {
@@ -17,7 +17,8 @@ export default async function HomePage() {
     <>
       <ThreeItemGrid />
       <Suspense>
-        <Carousel />
+        <HeroBanner />
+        {/* <Carousel /> */}
         <Suspense>
           <Footer />
         </Suspense>

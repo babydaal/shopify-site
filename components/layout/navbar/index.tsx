@@ -1,16 +1,15 @@
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
-import LogoSquare from 'components/logo-square';
+import LogoOneLine from 'components/images/logo-one-line';
 import { getMenu } from 'lib/shopify';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
-import Search from './search';
-const { SITE_NAME } = process.env;
+const { SITE_DESCRIPTION } = process.env;
 
 export default async function Navbar() {
-  const menu = await getMenu('next-js-frontend-header-menu');
+  const menu = await getMenu('main-menu');
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
@@ -19,31 +18,33 @@ export default async function Navbar() {
       </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
-          <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
-            <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              {SITE_NAME}
+          <Link href="/" className="mx-2 flex w-full items-center justify-center sm:w-auto lg:mr-6">
+            <LogoOneLine />
+            <div className="text-md ml-4 hidden flex-none font-informal font-semibold capitalize text-primary-darker dark:text-primary-light lg:block">
+              {SITE_DESCRIPTION}
             </div>
           </Link>
-          {menu.length ? (
-            <ul className="hidden gap-6 text-sm md:flex md:items-center">
-              {menu.map((item: Menu) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.path}
-                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : null}
         </div>
-        <div className="hidden justify-center md:flex md:w-1/3">
-          <Search />
-        </div>
-        <div className="flex justify-end md:w-1/3">
+        <div className="flex w-full justify-end md:w-2/3">
+          <div className="mr-8 flex items-center">
+            {menu.length ? (
+              <ul className="text-md hidden gap-8 md:flex md:items-center lg:gap-12">
+                {menu.map((item: Menu) => (
+                  <li key={item.title}>
+                    <Link
+                      href={item.path}
+                      className="font-sans text-base underline-offset-4 hover:text-black hover:underline dark:text-primary-light dark:hover:text-base-light"
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <div className="ml-2 hidden flex-none text-sm font-medium uppercase sm:block md:hidden">
+              {SITE_DESCRIPTION}
+            </div>
+          </div>
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>
